@@ -23,6 +23,7 @@ import oauth2 from './oauth2';
 const phantauth = require('./phantauth');
 import qq from './qq';
 import spotify from './spotify';
+const steam = require("./steam");
 import twitter from './twitter';
 const vkontakte = require('./vkontakte');
 import wechat from './wechat';
@@ -50,6 +51,7 @@ const providers = {
   google,
   github,
   twitter,
+  steam,
   spotify,
   anonymous,
   digits,
