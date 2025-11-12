@@ -19,6 +19,7 @@ import linkedin from './linkedin';
 const meetup = require('./meetup');
 import mfa from './mfa';
 import microsoft from './microsoft';
+const nintendo = require("./nintendo");
 import oauth2 from './oauth2';
 const phantauth = require('./phantauth');
 import qq from './qq';
@@ -48,6 +49,7 @@ const providers = {
   linkedin,
   meetup,
   mfa,
+  nintendo,
   google,
   github,
   twitter,
