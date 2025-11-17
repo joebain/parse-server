@@ -3,20 +3,14 @@ const AppTicket = require('steam-appticket');
 const https = require('https');
 const querystring = require('querystring');
 
-// todo move these to a config file.
-const decryptionKey = '3e3e2a3cbd54dc6c7cb5e51520dfa819dd7f9c12d062d54a1f8c14ddd231377f';
-const appId = '3414340';
-const steam_auth_url = "https://partner.steam-api.com/ISteamUserAuth/AuthenticateUserTicket/v1/"
-const steam_web_api_key = "DDFA57075562113469DC8057F2C7462D";
-const server_id = "kami2server";
 
 // Returns a promise that fulfills iff this application ticket is valid
-function validateAuthData(authData) {
+function validateAuthData(authData, authOptions) {
     // using an encrypted app ticket to authenticate
     if ("app_ticket" in authData) {
         console.log("Authenticate steam user using encrypted app ticket");
         var encrypted_ticket = Buffer.from(authData.app_ticket, 'hex');
-        var ticket = AppTicket.parseEncryptedAppTicket(encrypted_ticket, decryptionKey)
+        var ticket = AppTicket.parseEncryptedAppTicket(encrypted_ticket, authOptions.decryptionKey)
         if (ticket === null) {
             throw new Parse.Error(
                 Parse.Error.OBJECT_NOT_FOUND,
@@ -29,7 +23,7 @@ function validateAuthData(authData) {
                 'The provided application ticket does not match the given user id'
             );
         }
-        if (appId !== ticket.appID && demoAppId != ticket.appID) {
+        if (authOptions.appId !== ticket.appID && authOptions.demoAppId != ticket.appID) {
             throw new Parse.Error(
                 Parse.Error.OBJECT_NOT_FOUND,
                 'The provided application ticket does not match the Kami 2 or Kami 2 Demo application ids'
@@ -40,8 +34,7 @@ function validateAuthData(authData) {
     // using the web api to authenticate
     else if ("auth_ticket" in authData) {
         console.log("Authenticate steam user using web api and auth ticket");
-        //var web_api_ticket = Buffer.from(authData.auth_ticket, 'hex');
-        return callSteamWebApi(authData.auth_ticket);
+        return callSteamWebApi(authData.auth_ticket, authOptions);
     }
     
 }
@@ -51,15 +44,15 @@ function validateAppId() {
   return Promise.resolve();
 }
 
-function callSteamWebApi(auth_ticket) {
+function callSteamWebApi(auth_ticket, authOptions) {
     
     return new Promise(function(resolve, reject) {
         // GET parameters
         const parameters = {
-            key: steam_web_api_key,
-            appid: appId,
+            key: authOptions.webApiKey,
+            appid: authOptions.appId, // could try the demo id too, but we know that doesn't allow online play so don't worry for now
             ticket: auth_ticket,
-            identity: server_id
+            identity: authOptions.serverId
         }
 
         const get_request_args = querystring.stringify(parameters);
@@ -79,10 +72,6 @@ function callSteamWebApi(auth_ticket) {
 
         request.on('error', (error) => {
             console.log(error.message);
-            // throw new Parse.Error(
-            //     Parse.Error.OBJECT_NOT_FOUND,
-            //     'The Steam web api could not authenticate the user with the given auth ticket'
-            // );
             reject('The Steam web api could not authenticate the user with the given auth ticket');
         });
 
