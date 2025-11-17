@@ -1,5 +1,6 @@
 var Parse = require('parse/node').Parse;
 const https = require('https');
+const { URL } = require('url');
 var jwt = require('jsonwebtoken');
 var jwksClient = require('jwks-rsa');
 
@@ -8,11 +9,12 @@ const decryptionKey = '3e3e2a3cbd54dc6c7cb5e51520dfa819dd7f9c12d062d54a1f8c14ddd
 const appId = '3414340';
 const steam_auth_url = "https://partner.steam-api.com/ISteamUserAuth/AuthenticateUserTicket/v1/"
 const steam_web_api_key = "DDFA57075562113469DC8057F2C7462D";
-const server_id = "kami2server";
+const server_id = "0100118024dae000";
 
 // Returns a promise that fulfills iff this nsa id token is valid
 function validateAuthData(authData) {
-    
+    console.log("going to validate for nintendo");
+    console.log(authData);
     if ("token" in authData) {
         try {
             var token = authData["token"];
@@ -52,7 +54,7 @@ function validateAuthData(authData) {
                         callback(null, signingKey);
                     });
                 }
-
+                var options = {};
                 jwt.verify(token, getKey, options, function(err, decoded) {
                     console.log("verfied jwt, decoded value is:");
                     console.log(decoded);
@@ -102,28 +104,28 @@ function error(message) {
     throw new Parse.Error(Parse.Error.OBJECT_NOT_FOUND, message);
 }
 
-function getJWK(jku, jwk_name) {
+// function getJWK(jku, jwk_name) {
     
-    return new Promise(function(resolve, reject) {
-        var request = https.get(jku, (response) => {
-            console.log("Got jwk");
-            response.on('data', (d) => {
-                console.log("got jku response from nintendo");
-                console.log(data);
-                jwt.verify(token, )
-                resolve();
-            });
-        });
+//     return new Promise(function(resolve, reject) {
+//         var request = https.get(jku, (response) => {
+//             console.log("Got jwk");
+//             response.on('data', (d) => {
+//                 console.log("got jku response from nintendo");
+//                 console.log(data);
+//                 jwt.verify(token, )
+//                 resolve();
+//             });
+//         });
 
-        request.on('error', (error) => {
-            console.log(error.message);
+//         request.on('error', (error) => {
+//             console.log(error.message);
             
-            reject("Couldn't fetch a jwk from the nintendo cache");
-        });
+//             reject("Couldn't fetch a jwk from the nintendo cache");
+//         });
 
-        request.end();
-    });
-}
+//         request.end();
+//     });
+// }
 
 module.exports = {
   validateAppId,
