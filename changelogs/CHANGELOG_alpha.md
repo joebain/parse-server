@@ -1,3 +1,73 @@
+## [9.3.1-alpha.4](https://github.com/parse-community/parse-server/compare/9.3.1-alpha.3...9.3.1-alpha.4) (2026-02-23)
+
+
+### Bug Fixes
+
+* JWT Algorithm Confusion in Google Auth Adapter ([GHSA-4q3h-vp4r-prv2](https://github.com/parse-community/parse-server/security/advisories/GHSA-4q3h-vp4r-prv2)) ([#10072](https://github.com/parse-community/parse-server/issues/10072)) ([9d5942d](https://github.com/parse-community/parse-server/commit/9d5942d50e55c822924c27b05aa98f1393e7a330))
+
+## [9.3.1-alpha.3](https://github.com/parse-community/parse-server/compare/9.3.1-alpha.2...9.3.1-alpha.3) (2026-02-23)
+
+
+### Bug Fixes
+
+* GraphQL introspection disabled in `NODE_ENV=production` even with master key ([#10071](https://github.com/parse-community/parse-server/issues/10071)) ([a5269f0](https://github.com/parse-community/parse-server/commit/a5269f077666537fad1d2eeefee82a36a148255c))
+
+## [9.3.1-alpha.2](https://github.com/parse-community/parse-server/compare/9.3.1-alpha.1...9.3.1-alpha.2) (2026-02-21)
+
+
+### Bug Fixes
+
+* Remove obsolete Parse Server option `pages.enableRouter` ([#10070](https://github.com/parse-community/parse-server/issues/10070)) ([00b3b72](https://github.com/parse-community/parse-server/commit/00b3b7297d806b4b40d7c08dd987b748e018e4b6))
+
+## [9.3.1-alpha.1](https://github.com/parse-community/parse-server/compare/9.3.0...9.3.1-alpha.1) (2026-02-21)
+
+
+### Bug Fixes
+
+* Type error in docs creation ([#10069](https://github.com/parse-community/parse-server/issues/10069)) ([02a277f](https://github.com/parse-community/parse-server/commit/02a277f1e937fd3e6bd85bdb49870bf3f47678a0))
+
+# [9.3.0-alpha.9](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.8...9.3.0-alpha.9) (2026-02-21)
+
+
+### Features
+
+* Add support for streaming file upload via `Buffer`, `Readable`, `ReadableStream` ([#10065](https://github.com/parse-community/parse-server/issues/10065)) ([f0feb48](https://github.com/parse-community/parse-server/commit/f0feb48d0fb697a161693721eadd09d740336283))
+
+# [9.3.0-alpha.8](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.7...9.3.0-alpha.8) (2026-02-21)
+
+
+### Bug Fixes
+
+* Incorrect dependency chain of `Parse` uses browser build instead of Node build ([#10067](https://github.com/parse-community/parse-server/issues/10067)) ([1a2521d](https://github.com/parse-community/parse-server/commit/1a2521d930b855845aa13fde700b2e8170ff65a1))
+
+# [9.3.0-alpha.7](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.6...9.3.0-alpha.7) (2026-02-20)
+
+
+### Features
+
+* Upgrade to parse 8.2.0, @parse/push-adapter 8.3.0 ([#10066](https://github.com/parse-community/parse-server/issues/10066)) ([8b5a14e](https://github.com/parse-community/parse-server/commit/8b5a14ecaf0b58b899651fb97d43e0e5d9be506d))
+
+# [9.3.0-alpha.6](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.5...9.3.0-alpha.6) (2026-02-14)
+
+
+### Bug Fixes
+
+* Default ACL overwrites custom ACL on `Parse.Object` update ([#10061](https://github.com/parse-community/parse-server/issues/10061)) ([4ef89d9](https://github.com/parse-community/parse-server/commit/4ef89d912c08bb24500a4d4142a3220f024a2d34))
+
+# [9.3.0-alpha.5](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.4...9.3.0-alpha.5) (2026-02-12)
+
+
+### Bug Fixes
+
+* `Parse.Query.select('authData')` for `_User` class doesn't return auth data ([#10055](https://github.com/parse-community/parse-server/issues/10055)) ([44a5bb1](https://github.com/parse-community/parse-server/commit/44a5bb105e11e6918e899e0f1427b0adb38d6d67))
+
+# [9.3.0-alpha.4](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.3...9.3.0-alpha.4) (2026-02-12)
+
+
+### Bug Fixes
+
+* Unlinking auth provider triggers auth data validation ([#10045](https://github.com/parse-community/parse-server/issues/10045)) ([b6b6327](https://github.com/parse-community/parse-server/commit/b6b632755263417c2a3c3a31381eedc516723740))
+
 # [9.3.0-alpha.3](https://github.com/parse-community/parse-server/compare/9.3.0-alpha.2...9.3.0-alpha.3) (2026-02-07)
 
 
